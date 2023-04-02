@@ -1,5 +1,5 @@
 
-
+let selected_pokeman = Cookies.get('selection')
 let pokémon = [
     {
         name: `Pikachu`,
@@ -19,9 +19,9 @@ let pokémon = [
 ] 
 
 
+let new_data = []
 
 function selectPokemon( details ){
-    let new_data = []
 
     // stored the value of the target and stored it in the selected_pokeman variable
     let selected_pokeman = details[`target`].getAttribute( `selection_kind` )
@@ -35,19 +35,14 @@ function selectPokemon( details ){
     
     if ( selected_pokeman === pokémon[x][`name`] ){
         new_data.push( pokémon[x] )
-        console.log(new_data)
         let selection_json = JSON.stringify( new_data );
     Cookies.set( `selection`, selection_json )
     }
-        
-      
 
-        
      }
     
 
 }
-
 
 
 // added an event listener to all the buttons with a loop by frist

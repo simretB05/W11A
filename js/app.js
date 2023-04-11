@@ -1,5 +1,4 @@
-
-let selected_pokeman = Cookies.get('selection')
+//created an arry of pokemon object with name ,disciption and image_url of all the pokemon
 let pokémon = [
     {
         name: `Pikachu`,
@@ -18,25 +17,26 @@ let pokémon = [
     },
 ] 
 
-
+//assigned an empty arry for later use
 let new_data = []
-
+//created a function that takes details argument
 function selectPokemon( details ){
+// stored the value of the targeted attribute and stored it in  selected_pokeman variable
 
-    // stored the value of the target and stored it in the selected_pokeman variable
     let selected_pokeman = details[`target`].getAttribute( `selection_kind` )
+
     for ( let x = 0; x < pokémon.length; x++ ){
-        //looped through the pokemon.length and if the name of the target value
-        //which is clicked it not equal to the name comming from the loop
-        // then the the value of pokemon at the location of x is pushed to a new arry
-        // and then  is stringified and stored in the selection_json
-        //and its set in the cookies jar with a cookie name selections
-    
-    
+//looped through the pokemon.length and if the name of the target value
+//which is clicked is equal to the name comming from the loop
+// then the the value of pokemon at the location of x is pushed to a new arry
+
     if ( selected_pokeman === pokémon[x][`name`] ){
         new_data.push( pokémon[x] )
+//  the data which is pushed to the arry is then stringified and stored in the selection_json
+//and its set in the cookies jar with a cookie name selections
         let selection_json = JSON.stringify( new_data );
-    Cookies.set( `selection`, selection_json )
+        Cookies.set( `selection`, selection_json )
+        
     }
 
      }
@@ -48,8 +48,6 @@ function selectPokemon( details ){
 // added an event listener to all the buttons with a loop by frist
 // selection the buttons with querySelectorAll
 let selection_btn = document.querySelectorAll( `.selection` );
-
-
 
 for ( let i = 0; i < selection_btn.length; i++ ){
     selection_btn[i].addEventListener( `click`, selectPokemon )
